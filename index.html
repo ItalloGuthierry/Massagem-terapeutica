@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Massagem Terapêutica</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #ffb6c1, #87cefa, #98fb98);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+      color: #333;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: start;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.3);
+      padding: 20px 30px;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      margin-bottom: 30px;
+      width: 100%;
+      max-width: 700px;
+    }
+
+    h1 {
+      color: #fff;
+      font-size: 2.5em;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    }
+
+    section {
+      width: 100%;
+      max-width: 700px;
+    }
+
+    .mensagem, .motivacional, .musicas, .avaliacao, .qrcode {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 20px;
+      padding: 20px;
+      margin: 10px 0;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .mensagem:hover, .motivacional:hover, .musicas:hover, .avaliacao:hover, .qrcode:hover {
+      transform: scale(1.02);
+    }
+
+    p {
+      font-size: 1.2em;
+      color: #444;
+      margin: 10px 0;
+    }
+
+    button {
+      background: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #ff1493;
+      transform: scale(1.05);
+    }
+
+    audio {
+      margin-top: 15px;
+      width: 80%;
+      max-width: 400px;
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #fff;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+      padding-bottom: 20px;
+    }
+
+    .emoji-options {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .emoji {
+      font-size: 2em;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .emoji:hover {
+      transform: scale(1.3);
+    }
+
+    .selected {
+      transform: scale(1.4);
+      filter: drop-shadow(0 0 5px #ff69b4);
+    }
+
+    #mensagem-feedback {
+      display: none;
+      margin-top: 15px;
+      font-size: 1.1em;
+      color: #fff;
+      background: rgba(255, 105, 180, 0.8);
+      padding: 10px 15px;
+      border-radius: 10px;
+      animation: aparecer 1s ease forwards;
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2em; }
+      p { font-size: 1em; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🌸 Massagem Terapêutica 🌿</h1>
+  </header>
+
+  <section>
+    <div class="mensagem">
+      <p>✨ Respire fundo. Você merece este momento de paz e equilíbrio.</p>
+      <p>🌼 Cuide de você com carinho. A calma vem quando você se permite relaxar.</p>
+      <p>💖 Seu corpo é um templo. Trate-o com amor, respeito e gratidão.</p>
+    </div>
+
+    <div class="motivacional">
+      <h2>💫 Frase Motivacional do Dia</h2>
+      <p id="frase">Clique no botão abaixo para receber uma mensagem positiva.</p>
+      <button onclick="novaFrase()">Nova mensagem</button>
+    </div>
+
+    <div class="musicas">
+      <h2>🎵 Músicas Terapêuticas</h2>
+      <p>Escolha uma das músicas abaixo para relaxar:</p>
+
+      <audio id="player" controls>
+        <source id="musicaFonte" src="" type="audio/mpeg" />
+        Seu navegador não suporta áudio.
+      </audio>
+
+      <div style="margin-top:15px;">
+<button onclick="tocarMusica('musicas/som_natureza.mp3')">🌊 Som da Natureza</button>
+<button onclick="tocarMusica('musicas/sons_tibetanos.mp3')">🔥 Sons Tibetanos</button>
+<button onclick="tocarMusica('musicas/melodia_relaxante.mp3')">🌿 Melodia Relaxante</button>
+      </div>
+    </div>
+
+    <div class="avaliacao">
+      <h2>💆‍♀️ Avaliação do Seu Bem-Estar</h2>
+      <p>Como você se sente <strong>antes</strong> da massagem?</p>
+      <div class="emoji-options" id="antes">
+        <span class="emoji" onclick="selecionarEmoji('antes', this)">😣</span>
+        <span class="emoji" onclick="selecionarEmoji('antes', this)">😐</span>
+        <span class="emoji" onclick="selecionarEmoji('antes', this)">🙂</span>
+        <span class="emoji" onclick="selecionarEmoji('antes', this)">😌</span>
+      </div>
+
+      <p>Como você se sente <strong>durante</strong> a massagem?</p>
+      <div class="emoji-options" id="durante">
+        <span class="emoji" onclick="selecionarEmoji('durante', this)">😕</span>
+        <span class="emoji" onclick="selecionarEmoji('durante', this)">😊</span>
+        <span class="emoji" onclick="selecionarEmoji('durante', this)">😌</span>
+        <span class="emoji" onclick="selecionarEmoji('durante', this)">🥰</span>
+      </div>
+
+      <p>Como você se sente <strong>depois</strong> da massagem?</p>
+      <div class="emoji-options" id="depois">
+        <span class="emoji" onclick="selecionarEmoji('depois', this)">🙂</span>
+        <span class="emoji" onclick="selecionarEmoji('depois', this)">😌</span>
+        <span class="emoji" onclick="selecionarEmoji('depois', this)">😊</span>
+        <span class="emoji" onclick="selecionarEmoji('depois', this)">🥰</span>
+      </div>
+
+      <button style="margin-top:20px;" onclick="enviarFeedback()">💖 Enviar Avaliação</button>
+      <div id="mensagem-feedback">Abrindo WhatsApp para enviar sua avaliação 💌</div>
+    </div>
+
+    <div class="qrcode" style="margin-top: 30px;">
+      <h2>📱 Acesse pelo celular</h2>
+      <p>Escaneie o QR Code abaixo para entrar no site:</p>
+      <img id="qrcode-img" alt="QR Code para o site" style="width:200px;height:200px;border:3px solid #fff;border-radius:20px;">
+    </div>
+  </section>
+
+  <footer>
+    <p>Feito com 💕 para promover relaxamento e bem-estar</p>
+  </footer>
+
+  <script>
+    const frases = [
+      "🌞 Acredite no poder da sua calma. Tudo flui quando você está em paz.",
+      "🌷 Você é capaz de transformar o seu dia com um simples sorriso.",
+      "💎 A serenidade é a sua maior força. Cuide dela.",
+      "🌈 Hoje é um bom dia para cuidar de você com amor.",
+      "🕊️ Deixe que a leveza guie os seus pensamentos."
+    ];
+
+    function novaFrase() {
+      const frase = frases[Math.floor(Math.random() * frases.length)];
+      document.getElementById("frase").innerText = frase;
+    }
+
+    function tocarMusica(arquivo) {
+      const player = document.getElementById("player");
+      const fonte = document.getElementById("musicaFonte");
+      fonte.src = arquivo;
+      player.load(); // Carrega o novo arquivo
+      player.play()
+        .then(() => {
+          console.log('Música iniciada com sucesso');
+        })
+        .catch((erro) => {
+          console.log('Erro ao iniciar a música: ', erro);
+        });
+    }
+
+    let avaliacoes = {antes:'', durante:'', depois:''};
+
+    function selecionarEmoji(categoria, elemento) {
+      avaliacoes[categoria] = elemento.textContent;
+      document.querySelectorAll(`#${categoria} .emoji`).forEach(e => e.classList.remove('selected'));
+      elemento.classList.add('selected');
+    }
+
+    function enviarFeedback() {
+      const msg = `Avaliação da massagem:%0AAntes: ${avaliacoes.antes}%0ADurante: ${avaliacoes.durante}%0ADepois: ${avaliacoes.depois}`;
+      const numero = '5597984342438';
+      window.open(`https://wa.me/${numero}?text=${msg}`);
+      document.getElementById('mensagem-feedback').style.display = 'block';
+    }
+
+    // QR Code
+    const linkSite = "http://localhost:8000"; 
+    const qrcodeImg = document.getElementById("qrcode-img");
+    qrcodeImg.src = `https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=${encodeURIComponent(linkSite)}&choe=UTF-8`;
+  </script>
+</body>
+</html>
