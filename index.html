@@ -259,14 +259,11 @@
       window.open(`https://wa.me/${numero}?text=${msg}`);
       document.getElementById('mensagem-feedback').style.display = 'block';
     }
-
-    // QR Code
-    const linkSite = "http://localhost:8000"; 
-    const qrcodeImg = document.getElementById("qrcode-img");
-    qrcodeImg.src = `https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=${encodeURIComponent(linkSite)}&choe=UTF-8`;
+    
   </script>
 </body>
 </html>
+
 
 
 
