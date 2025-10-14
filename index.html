@@ -141,6 +141,7 @@
   </header>
 
   <section>
+    <!-- Conteúdo fora das abas (sempre visível) -->
     <div class="mensagem">
       <p>✨ Respire fundo. Você merece este momento de paz e equilíbrio.</p>
       <p>🌼 Cuide de você com carinho. A calma vem quando você se permite relaxar.</p>
@@ -179,21 +180,23 @@
     <div class="tab-content" id="respiracao">
       <h2>Técnicas de Respiração</h2>
       <p>Assista ao vídeo abaixo para aprender técnicas de respiração para relaxamento:</p>
-      <video width="55%" controls>
+      <video width="50%" controls>
         <source src="video_tecnica_respiração.mp4" type="video/mp4">
         Seu navegador não suporta vídeos.
       </video>
     </div>
 
-    <div class="tab-content" id="automassagem">
-      <h2>Automassagem</h2>
-      <p>Assista ao vídeo abaixo para aprender técnicas de automassagem:</p>
-      <video id="videoAutomassagem" width="55%" controls>
-        <source src="video_automassagem_1.mp4" type="video/mp4">
-        Seu navegador não suporta vídeos.
-      </video>
-<div style="margin-top: 20px;">
-  <button onclick="proximoVideo()">Próximo Vídeo</button>    
+<div class="tab-content" id="automassagem">
+  <h2>Automassagem</h2>
+  <p>Assista ao vídeo abaixo para aprender técnicas de automassagem:</p>
+  <video id="videoAutomassagem" width="50%" controls>
+    <source src="video_automassagem_1.mp4" type="video/mp4">
+    Seu navegador não suporta vídeos.
+  </video>
+
+  <!-- Botão "Próximo Vídeo" abaixo do vídeo --> 
+   <div style="margin-top: 20px;"></div>
+  <button onclick="proximoVideo()">Próximo Vídeo</button>
 </div>
 
     <div class="avaliacao">
@@ -238,19 +241,6 @@
   </footer>
 
   <script>
-    let videoAtual = 0;
-    const videosAutomassagem = [
-      "video_automassagem_1.mp4",
-      "video_automassagem_2.mp4",
-      "video_automassagem_3.mp4",
-      "video_automassagem_4.mp4"
-    ];
-
-    function proximoVideo() {
-      videoAtual = (videoAtual + 1) % videosAutomassagem.length;
-      document.getElementById("videoAutomassagem").src = videosAutomassagem[videoAtual];
-    }
-
     // Função para mostrar a aba selecionada
     function mostrarAba(aba) {
       // Esconde todas as abas
@@ -264,6 +254,18 @@
 
     // Define a aba inicial (pode ser a primeira)
     mostrarAba('respiracao');
+
+    let videoAtual = 0;
+    const videosAutomassagem = [
+      "video_automassagem_1.mp4",
+      "video_automassagem_2.mp4",
+      "video_automassagem_3.mp4"
+    ];
+
+    function proximoVideo() {
+      videoAtual = (videoAtual + 1) % videosAutomassagem.length;
+      document.getElementById("videoAutomassagem").src = videosAutomassagem[videoAtual];
+    }
   </script>
 </body>
 </html>
