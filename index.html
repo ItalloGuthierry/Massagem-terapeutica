@@ -240,33 +240,68 @@
     <p>Feito com 💕 para promover relaxamento e bem-estar</p>
   </footer>
 
-  <script>
-    // Abas
-    function mostrarAba(aba) {
-      const tabs = document.querySelectorAll('.tab-content');
-      tabs.forEach(tab => tab.classList.remove('active-tab'));
-      const abaAtiva = document.getElementById(aba);
-      abaAtiva.classList.add('active-tab');
-    }
+ <script>
+  // FRASAS MOTIVACIONAIS
+  const frases = [
+    "🌞 Acredite no poder da sua calma. Tudo flui quando você está em paz.",
+    "🌷 Você é capaz de transformar o seu dia com um simples sorriso.",
+    "💎 A serenidade é a sua maior força. Cuide dela.",
+    "🌈 Hoje é um bom dia para cuidar de você com amor.",
+    "🕊️ Deixe que a leveza guie os seus pensamentos."
+  ];
 
-    // Define aba inicial
-    mostrarAba('respiracao');
+  function novaFrase() {
+    const frase = frases[Math.floor(Math.random() * frases.length)];
+    document.getElementById("frase").innerText = frase;
+  }
 
-    // Próximo vídeo Automassagem
-    let videoAtual = 0;
-    const videosAutomassagem = [
-      "video_automassagem_1.mp4",
-      "video_automassagem_2.mp4",
-      "video_automassagem_3.mp4",
-      "video_automassagem_4.mp4"
-    ];
-    function proximoVideo() {
-      videoAtual = (videoAtual + 1) % videosAutomassagem.length;
-      document.getElementById("videoAutomassagem").src = videosAutomassagem[videoAtual];
-    }
-  </script>
-</body>
-</html>
+  // MÚSICAS
+  function tocarMusica(arquivo) {
+    const player = document.getElementById("player");
+    const fonte = document.getElementById("musicaFonte");
+    fonte.src = arquivo;
+    player.load();
+    player.play()
+      .then(() => console.log('Música iniciada com sucesso'))
+      .catch((erro) => console.log('Erro ao iniciar a música: ', erro));
+  }
 
+  // EMOJIS / AVALIAÇÃO
+  let avaliacoes = {antes:'', durante:'', depois:''};
 
+  function selecionarEmoji(categoria, elemento) {
+    avaliacoes[categoria] = elemento.textContent;
+    document.querySelectorAll(`#${categoria} .emoji`).forEach(e => e.classList.remove('selected'));
+    elemento.classList.add('selected');
+  }
 
+  function enviarFeedback() {
+    const msg = `Avaliação da massagem:%0AAntes: ${avaliacoes.antes}%0ADurante: ${avaliacoes.durante}%0ADepois: ${avaliacoes.depois}`;
+    const numero = '5597984342438';
+    window.open(`https://wa.me/${numero}?text=${msg}`);
+    document.getElementById('mensagem-feedback').style.display = 'block';
+  }
+
+  // ABAS
+  function mostrarAba(aba) {
+    const tabs = document.querySelectorAll('.tab-content');
+    tabs.forEach(tab => tab.classList.remove('active-tab'));
+    const abaAtiva = document.getElementById(aba);
+    abaAtiva.classList.add('active-tab');
+  }
+  mostrarAba('respiracao'); // aba inicial
+
+  // PRÓXIMO VÍDEO AUTOMASSAGEM
+  let videoAtual = 0;
+  const videosAutomassagem = [
+    "video_automassagem_1.mp4",
+    "video_automassagem_2.mp4",
+    "video_automassagem_3.mp4",
+    "video_automassagem_4.mp4"
+  ];
+
+  function proximoVideo() {
+    videoAtual = (videoAtual + 1) % videosAutomassagem.length;
+    document.getElementById("videoAutomassagem").src = videosAutomassagem[videoAtual];
+  }
+</script>
