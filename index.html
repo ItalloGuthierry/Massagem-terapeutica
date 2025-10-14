@@ -13,10 +13,6 @@
       animation: gradient 15s ease infinite;
       color: #333;
       text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: start;
       min-height: 100vh;
       padding: 20px;
     }
@@ -35,6 +31,8 @@
       margin-bottom: 30px;
       width: 100%;
       max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     h1 {
@@ -46,6 +44,7 @@
     section {
       width: 100%;
       max-width: 700px;
+      margin: 0 auto;
     }
 
     .mensagem, .motivacional, .musicas, .avaliacao, .qrcode {
@@ -97,7 +96,7 @@
       padding-bottom: 20px;
     }
 
-    /* Estilos para o menu de abas */
+    /* Menu de abas */
     .tabs {
       display: flex;
       justify-content: center;
@@ -129,9 +128,14 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
 
-    /* Mostrar conteúdo da aba ativa */
     .active-tab {
       display: block;
+    }
+
+    /* Centralizar botão Próximo Vídeo */
+    #automassagem button {
+      display: block;
+      margin: 20px auto;
     }
   </style>
 </head>
@@ -141,7 +145,7 @@
   </header>
 
   <section>
-    <!-- Conteúdo fora das abas (sempre visível) -->
+    <!-- Conteúdo sempre visível -->
     <div class="mensagem">
       <p>✨ Respire fundo. Você merece este momento de paz e equilíbrio.</p>
       <p>🌼 Cuide de você com carinho. A calma vem quando você se permite relaxar.</p>
@@ -157,12 +161,10 @@
     <div class="musicas">
       <h2>🎵 Músicas Terapêuticas</h2>
       <p>Escolha uma das músicas abaixo para relaxar:</p>
-
       <audio id="player" controls>
         <source id="musicaFonte" src="" type="audio/mpeg" />
         Seu navegador não suporta áudio.
       </audio>
-
       <div style="margin-top:15px;">
         <button onclick="tocarMusica('melodia_relaxante.mp3')">🌿 Melodia Relaxante</button>
         <button onclick="tocarMusica('som_natureza.mp3')">🌊 Som da Natureza</button>
@@ -170,7 +172,7 @@
       </div>
     </div>
 
-    <!-- Menu de navegação para as abas -->
+    <!-- Menu de abas -->
     <div class="tabs">
       <div class="tab" onclick="mostrarAba('respiracao')">Técnicas de Respiração</div>
       <div class="tab" onclick="mostrarAba('automassagem')">Automassagem</div>
@@ -180,24 +182,24 @@
     <div class="tab-content" id="respiracao">
       <h2>Técnicas de Respiração</h2>
       <p>Assista ao vídeo abaixo para aprender técnicas de respiração para relaxamento:</p>
-      <video width="50%" controls>
+      <video width="100%" controls>
         <source src="video_tecnica_respiração.mp4" type="video/mp4">
         Seu navegador não suporta vídeos.
       </video>
     </div>
 
-<div class="tab-content" id="automassagem">
-  <h2>Automassagem</h2>
-  <p>Assista ao vídeo abaixo para aprender técnicas de automassagem:</p>
-  <video id="videoAutomassagem" width="50%" controls>
-    <source src="video_automassagem_1.mp4" type="video/mp4">
-    Seu navegador não suporta vídeos.
-  </video>
-  
-  <button onclick="proximoVideo()">Próximo Vídeo</button>
-</div>
+    <div class="tab-content" id="automassagem">
+      <h2>Automassagem</h2>
+      <p>Assista ao vídeo abaixo para aprender técnicas de automassagem:</p>
+      <video id="videoAutomassagem" width="100%" controls>
+        <source src="video_automassagem_1.mp4" type="video/mp4">
+        Seu navegador não suporta vídeos.
+      </video>
+      <button onclick="proximoVideo()">Próximo Vídeo</button>
+    </div>
 
-<div class="avaliacao">
+    <!-- Avaliação sempre visível -->
+    <div class="avaliacao">
       <h2>💆‍♀️ Avaliação do Seu Bem-Estar</h2>
       <p>Como você se sente <strong>antes</strong> da massagem?</p>
       <div class="emoji-options" id="antes">
@@ -239,27 +241,25 @@
   </footer>
 
   <script>
-    // Função para mostrar a aba selecionada
+    // Abas
     function mostrarAba(aba) {
-      // Esconde todas as abas
       const tabs = document.querySelectorAll('.tab-content');
       tabs.forEach(tab => tab.classList.remove('active-tab'));
-
-      // Mostra a aba clicada
       const abaAtiva = document.getElementById(aba);
       abaAtiva.classList.add('active-tab');
     }
 
-    // Define a aba inicial (pode ser a primeira)
+    // Define aba inicial
     mostrarAba('respiracao');
 
+    // Próximo vídeo Automassagem
     let videoAtual = 0;
     const videosAutomassagem = [
       "video_automassagem_1.mp4",
       "video_automassagem_2.mp4",
-      "video_automassagem_3.mp4"
+      "video_automassagem_3.mp4",
+      "video_automassagem_4.mp4"
     ];
-
     function proximoVideo() {
       videoAtual = (videoAtual + 1) % videosAutomassagem.length;
       document.getElementById("videoAutomassagem").src = videosAutomassagem[videoAtual];
@@ -267,14 +267,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
