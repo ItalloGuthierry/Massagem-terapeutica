@@ -8,10 +8,10 @@
     body {
       margin: 0;
       font-family: "Poppins", sans-serif;
-      background: linear-gradient(135deg, #ffb6c1, #87cefa, #98fb98);
+      background: linear-gradient(135deg, #000, #1a1a1a, #2e2e2e);
       background-size: 400% 400%;
       animation: gradient 15s ease infinite;
-      color: #333;
+      color: #d8c7a6; /* bege */
       text-align: center;
       min-height: 100vh;
       padding: 20px;
@@ -24,10 +24,10 @@
     }
 
     header {
-      background: rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.05);
       padding: 20px 30px;
       border-radius: 20px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.6);
       margin-bottom: 30px;
       width: 100%;
       max-width: 700px;
@@ -35,10 +35,9 @@
       margin-right: auto;
     }
 
-    h1 {
-      color: #fff;
-      font-size: 2.5em;
-      text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    h1, h2 {
+      color: #f5deb3; /* bege mais claro */
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
     }
 
     section {
@@ -48,12 +47,13 @@
     }
 
     .mensagem, .motivacional, .musicas, .avaliacao, .qrcode {
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.05);
       border-radius: 20px;
       padding: 20px;
       margin: 10px 0;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.6);
       transition: transform 0.3s ease;
+      color: #d8c7a6;
     }
 
     .mensagem:hover, .motivacional:hover, .musicas:hover, .avaliacao:hover, .qrcode:hover {
@@ -62,13 +62,13 @@
 
     p {
       font-size: 1.2em;
-      color: #444;
+      color: #e6d8b4;
       margin: 10px 0;
     }
 
     button {
-      background: #ff69b4;
-      color: white;
+      background: #b8860b;
+      color: #fff8dc;
       border: none;
       border-radius: 10px;
       padding: 10px 20px;
@@ -78,25 +78,26 @@
     }
 
     button:hover {
-      background: #ff1493;
+      background: #daa520;
       transform: scale(1.05);
     }
 
-    audio {
+    audio, video {
       margin-top: 15px;
       width: 80%;
       max-width: 400px;
+      border-radius: 10px;
+      outline: none;
     }
 
     footer {
       margin-top: 40px;
       font-size: 0.9em;
-      color: #fff;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+      color: #f5deb3;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
       padding-bottom: 20px;
     }
 
-    /* Menu de abas */
     .tabs {
       display: flex;
       justify-content: center;
@@ -104,8 +105,8 @@
     }
 
     .tab {
-      background: #ff69b4;
-      color: white;
+      background: #b8860b;
+      color: #fff8dc;
       padding: 10px 20px;
       border-radius: 10px;
       cursor: pointer;
@@ -115,7 +116,7 @@
     }
 
     .tab:hover {
-      background: #ff1493;
+      background: #daa520;
       transform: scale(1.05);
     }
 
@@ -124,18 +125,38 @@
       padding: 20px;
       margin-top: 20px;
       border-radius: 20px;
-      background-color: rgba(255, 255, 255, 0.8);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      background-color: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+      color: #d8c7a6;
     }
 
     .active-tab {
       display: block;
     }
 
-    /* Centralizar botão Próximo Vídeo */
     #automassagem button {
       display: block;
       margin: 20px auto;
+    }
+
+    .emoji {
+      font-size: 2em;
+      cursor: pointer;
+      margin: 5px;
+      transition: transform 0.2s;
+    }
+
+    .emoji:hover {
+      transform: scale(1.2);
+    }
+
+    .selected {
+      filter: brightness(1.5);
+    }
+
+    img {
+      border: 3px solid #d8c7a6;
+      border-radius: 20px;
     }
   </style>
 </head>
@@ -145,7 +166,6 @@
   </header>
 
   <section>
-    <!-- Conteúdo sempre visível -->
     <div class="mensagem">
       <p>✨ Respire fundo. Você merece este momento de paz e equilíbrio.</p>
       <p>🌼 Cuide de você com carinho. A calma vem quando você se permite relaxar.</p>
@@ -172,13 +192,11 @@
       </div>
     </div>
 
-    <!-- Menu de abas -->
     <div class="tabs">
       <div class="tab" onclick="mostrarAba('respiracao')">Técnicas de Respiração</div>
       <div class="tab" onclick="mostrarAba('automassagem')">Automassagem</div>
     </div>
 
-    <!-- Conteúdo das abas -->
     <div class="tab-content" id="respiracao">
       <h2>Técnicas de Respiração</h2>
       <p>Assista ao vídeo abaixo para aprender técnicas de respiração para relaxamento:</p>
@@ -198,7 +216,6 @@
       <button onclick="proximoVideo()">Próximo Vídeo</button>
     </div>
 
-    <!-- Avaliação sempre visível -->
     <div class="avaliacao">
       <h2>💆‍♀️ Avaliação do Seu Bem-Estar</h2>
       <p>Como você se sente <strong>antes</strong> da massagem?</p>
@@ -226,13 +243,13 @@
       </div>
 
       <button style="margin-top:20px;" onclick="enviarFeedback()">💖 Enviar Avaliação</button>
-      <div id="mensagem-feedback">Abrindo WhatsApp para enviar sua avaliação 💌</div>
+      <div id="mensagem-feedback" style="display:none;">Abrindo WhatsApp para enviar sua avaliação 💌</div>
     </div>
 
     <div class="qrcode" style="margin-top: 30px;">
       <h2>📱 Acesse pelo celular</h2>
       <p>Escaneie o QR Code abaixo para entrar no site:</p>
-      <img src="Acesse_aqui-1024.jpeg" alt="QR Code para o site" style="width:200px;height:200px;border:3px solid #fff;border-radius:20px;">
+      <img src="Acesse_aqui-1024.jpeg" alt="QR Code para o site" style="width:200px;height:200px;">
     </div>
   </section>
 
@@ -241,7 +258,6 @@
   </footer>
 
  <script>
-  // FRASAS MOTIVACIONAIS
   const frases = [
     "🌞 Acredite no poder da sua calma. Tudo flui quando você está em paz.",
     "🌷 Você é capaz de transformar o seu dia com um simples sorriso.",
@@ -255,18 +271,14 @@
     document.getElementById("frase").innerText = frase;
   }
 
-  // MÚSICAS
   function tocarMusica(arquivo) {
     const player = document.getElementById("player");
     const fonte = document.getElementById("musicaFonte");
     fonte.src = arquivo;
     player.load();
-    player.play()
-      .then(() => console.log('Música iniciada com sucesso'))
-      .catch((erro) => console.log('Erro ao iniciar a música: ', erro));
+    player.play();
   }
 
-  // EMOJIS / AVALIAÇÃO
   let avaliacoes = {antes:'', durante:'', depois:''};
 
   function selecionarEmoji(categoria, elemento) {
@@ -282,16 +294,13 @@
     document.getElementById('mensagem-feedback').style.display = 'block';
   }
 
-  // ABAS
   function mostrarAba(aba) {
     const tabs = document.querySelectorAll('.tab-content');
     tabs.forEach(tab => tab.classList.remove('active-tab'));
-    const abaAtiva = document.getElementById(aba);
-    abaAtiva.classList.add('active-tab');
+    document.getElementById(aba).classList.add('active-tab');
   }
-  mostrarAba('respiracao'); // aba inicial
+  mostrarAba('respiracao');
 
-  // PRÓXIMO VÍDEO AUTOMASSAGEM
   let videoAtual = 0;
   const videosAutomassagem = [
     "video_automassagem_1.mp4",
@@ -305,3 +314,5 @@
     document.getElementById("videoAutomassagem").src = videosAutomassagem[videoAtual];
   }
 </script>
+</body>
+</html>
